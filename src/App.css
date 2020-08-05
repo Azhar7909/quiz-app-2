@@ -1,0 +1,26 @@
+/* Quiz Card */
+.quizContainer{
+padding-top:20px;
+}
+.quizCard{
+  width: 300px;
+  margin: 0 auto;
+}
+.quizHeader{
+  background-color: #1976d2;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  width: 235px;
+  margin: 0 auto;
+}
+.quizFooter{
+  height:10px ;
+  width: 250px;
+  margin: 0 auto;
+  background-color: #1976d2;
+}
+/* Home Screen */
+.result-text{
+  text-align: center;
+}
