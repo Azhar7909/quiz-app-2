@@ -10,7 +10,9 @@ export default function HomeScreen() {
     let [showResult, setShowResult] = useState(false)
     let [youSelected, setYouSelected] = useState<string[]>([]);
     const [status, setStatus] = useState("");
-    // console.log(quiz);
+    const [style, setStyle] = useState(true);
+    const [percentage, setPercentage] = useState(0)
+    console.log(quiz);
     
 
     useEffect(() => {
@@ -41,8 +43,14 @@ export default function HomeScreen() {
             setShowResult(true);
             if (score === 3 || score === 4 || score === 5 ) {
                 setStatus("PASS")
+                setStyle(true)
+                const per = (score/5)*100;
+                setPercentage(per);
             }else{
                 setStatus("FAIL")
+                setStyle(false);
+                const per = (score/5)*100;
+                setPercentage(per);
             }
         }
     }
@@ -52,7 +60,9 @@ export default function HomeScreen() {
 
     if (showResult) {
         return (<div className="question-container result-container">
-            <h1 className="result-text">Result ( {status} )</h1>
+            <h1 className="result-text">Result ( 
+                <span className={`result-text ${style ? "pass" : "fail"}`}> {status}{' '}{percentage}% </span> )
+            </h1>
             <p className="result-text">
                 Your final score is
               <b> {score}</b> out of <b>{quiz.length}</b>

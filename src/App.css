@@ -55,3 +55,9 @@ padding-top:20px;
   text-align: center;
   margin: -20px;
 }
+.pass{
+  color: green;
+}
+.fail{
+  color:red
+}
