@@ -91,7 +91,7 @@ export default function HomeScreen() {
                     </div>
                 ))}
             </div>
-            <div className="footer">END</div>
+            <div className="footer">App developed by Engineer Azhar Hussain</div>
         </div>)
     }
 
