@@ -20,12 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const QuizCard: React.FC<questionPropsType> = ({ category, question, options, callback }) => {
-    // console.log("question",question);
-    // console.log("options",options);
-    // console.log("callback",callback);
-    // console.log("category",category);
-
+const QuizCard: React.FC<questionPropsType> = ({ category, question, options, callback, quiz, currentStep }) => {
 
     let [selectedAns, setSelectedAns] = React.useState("");
 
@@ -34,16 +29,6 @@ const QuizCard: React.FC<questionPropsType> = ({ category, question, options, ca
     }
 
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
-    const [error, setError] = React.useState(false);
-    const [helperText, setHelperText] = React.useState('Choose wisely');
-
-    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue((event.target as HTMLInputElement).value);
-        setError(false);
-    };
-
-    
 
     return (
         <div className="quizContainer">
@@ -51,8 +36,12 @@ const QuizCard: React.FC<questionPropsType> = ({ category, question, options, ca
                 <div className="quizHeader" >
                     QUIZ APP
                 </div>
+                <div style={{display:'flex',justifyContent:'space-between',padding:'10px 25px'}}>
+                    <span style={{color:'darkgreen',fontSize:'19px'}}>Question: {currentStep+1}</span>
+                    <span style={{color:'darkcyan',fontSize:'19px'}}> Total Questions: {quiz.length}</span>
+                </div>
                 <form onSubmit={(e: React.FormEvent<EventTarget>) => callback(e, selectedAns)}>
-                    <FormControl component="fieldset" error={error} className={classes.formControl}>
+                    <FormControl component="fieldset" className={classes.formControl}>
                         <FormLabel component="legend">
                             <span style={{ color: 'brown', fontSize: '20px' }}>Category:</span>
                             {" "}{category}
@@ -61,17 +50,17 @@ const QuizCard: React.FC<questionPropsType> = ({ category, question, options, ca
                             <span style={{ color: 'blue', fontSize: '20px' }}>Question:</span>
                             {" "}{question}
                         </FormLabel>
-                        <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
+                        <RadioGroup aria-label="quiz" name="quiz" ><br />
                             {options.map((val, ind) => (
                                 <FormControlLabel key={ind}
-                                    value={val} control={<Radio />}
+                                    value={val} control={<Radio required />}
                                     label={val}
                                     checked={selectedAns === val}
                                     onChange={handleSelection} />
                             ))}
                         </RadioGroup>
-                        <FormHelperText>{helperText}</FormHelperText>
-                        <Button style={{ margin: '0 auto' }} type="submit" variant="outlined" color="primary" className={classes.button}>
+                        <FormHelperText>Choose wisely</FormHelperText><br /><br />
+                        <Button style={{ margin: '0 auto', width: '95%' }} type="submit" variant="outlined" color="primary" className={classes.button}>
                             Submit Answer
                         </Button>
                     </FormControl>

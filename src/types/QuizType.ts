@@ -21,4 +21,6 @@ export type questionPropsType = {
     question: string
     options: string[]
     callback: (e:React.FormEvent<EventTarget>, ans:string) => void
+    quiz: QuizType[]
+    currentStep:number
 }

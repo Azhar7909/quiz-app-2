@@ -8,14 +8,15 @@ export default function HomeScreen() {
     let [currentStep, setCurrentStep] = useState(0)
     let [score, setScore] = useState(0)
     let [showResult, setShowResult] = useState(false)
-    // console.log("questions=>>", quiz);
- 
+    let [youSelected, setYouSelected] = useState<string[]>([]);
+    const [status, setStatus] = useState("");
+    // console.log(quiz);
+    
 
     useEffect(() => {
         async function fetchData() {
             const questions: QuizType[] = await grtQuizDetail(5, "easy");
-            setQuiz(questions); 
-            console.log("questions",questions);           
+            setQuiz(questions);          
         }
         fetchData();
     }, [])
@@ -29,25 +30,38 @@ export default function HomeScreen() {
         
         if (userAns === currentQuestion.correct_answer) {
             setScore(++score);
+            setYouSelected([...youSelected, userAns + " "+" ✔"])
+        }else{
+            setYouSelected([...youSelected, userAns + " "+" ✖"])
         }
 
         if (currentStep !== quiz.length - 1)
             setCurrentStep(++currentStep);
         else {
             setShowResult(true);
+            if (score === 3 || score === 4 || score === 5 ) {
+                setStatus("PASS")
+            }else{
+                setStatus("FAIL")
+            }
         }
     }
 
     if (!quiz.length)
-        return <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading.. </h3>
+        return <h1 className="loading">Loading ... </h1>
 
     if (showResult) {
         return (<div className="question-container result-container">
-            <h2 className="result-text">Result</h2>
+            <h1 className="result-text">Result ( {status} )</h1>
             <p className="result-text">
                 Your final score is
               <b> {score}</b> out of <b>{quiz.length}</b>
             </p>
+            <div style={{marginLeft: '28px', }}><h2 style={{textShadow:'4px 2px 5px #917373'}}>Your given Answers:</h2>
+                {youSelected.map((v, i)=>(
+                    <li key={i} style={{marginLeft:'25px'}}>{v}</li>
+                ))}
+            </div><br/>
             <div style={{padding: '20px',width:'500px',margin:'0 auto'}}>
                 {quiz.map((val, ind)=>(
                     <div key={ind}>{ind+1}) 
@@ -62,6 +76,7 @@ export default function HomeScreen() {
                     </div>
                 ))}
             </div>
+            <div className="footer">END</div>
         </div>)
     }
 
@@ -72,6 +87,8 @@ export default function HomeScreen() {
                 category={quiz[currentStep].category}
                 question={quiz[currentStep].question}
                 callback={handleSubmit}
+                quiz={quiz}
+                currentStep={currentStep}
             />
         </div>
     )
