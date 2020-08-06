@@ -12,7 +12,7 @@ export default function HomeScreen() {
     const [status, setStatus] = useState("");
     const [style, setStyle] = useState(true);
     const [percentage, setPercentage] = useState(0)
-    console.log(quiz);
+    // console.log(quiz);
     
 
     useEffect(() => {
@@ -32,13 +32,13 @@ export default function HomeScreen() {
 
         const currentQuestion: QuizType = quiz[currentStep];
 
-        console.log("correct And: " + currentQuestion.correct_answer + "--user Selection:" + userAns)
+        // console.log("correct And: " + currentQuestion.correct_answer + "--user Selection:" + userAns)
         
         if (userAns === currentQuestion.correct_answer) {
             setScore(++score);
-            setYouSelected([...youSelected, userAns + " "+" ✔"])
+            setYouSelected([...youSelected, userAns + " " + " ✔"])
         }else{
-            setYouSelected([...youSelected, userAns + " "+" ✖"])
+            setYouSelected([...youSelected, userAns + " " + " ✖"])
         }
 
         if (currentStep !== quiz.length - 1)
