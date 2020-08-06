@@ -61,3 +61,7 @@ padding-top:20px;
 .fail{
   color:red
 }
+.resetBtn{
+  padding: 7px 20px;
+  cursor: pointer;
+}

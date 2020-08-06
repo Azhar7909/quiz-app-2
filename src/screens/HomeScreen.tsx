@@ -21,7 +21,11 @@ export default function HomeScreen() {
             setQuiz(questions);          
         }
         fetchData();
-    }, [])
+    }, []);
+
+    function refreshPage() {
+        window.location.reload(false);
+      }
 
     const handleSubmit = (e: React.FormEvent<EventTarget>, userAns: string) => {
         e.preventDefault();
@@ -60,6 +64,7 @@ export default function HomeScreen() {
 
     if (showResult) {
         return (<div className="question-container result-container">
+            <button className="resetBtn" onClick={refreshPage} type="reset">Try Again</button>
             <h1 className="result-text">Result ( 
                 <span className={`result-text ${style ? "pass" : "fail"}`}> {status}{' '}{percentage}% </span> )
             </h1>
