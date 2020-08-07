@@ -15,9 +15,11 @@ function App() {
       <div style={{ width: '360px', margin: '0 auto' }}>
         <ul>
           <li>Total number of questions 5</li>
+          <li>Questions relate any type of information in the world</li>
+          <li>Category defined of every question</li>
           <li>You must give correct answer 3 </li>
           <li>Passing criteria 60% </li>
-          <li>If you want to dudge your Knowledge then click on Start Button</li>
+          <li>If you ready to dudge your Knowledge then click on Start Button</li>
         </ul>
       </div>
       <div style={{textAlign: 'center',paddingTop:'50px'}}>

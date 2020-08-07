@@ -37,7 +37,7 @@ const QuizCard: React.FC<questionPropsType> = ({ category, question, options, ca
                     QUIZ APP
                 </div>
                 <div style={{display:'flex',justifyContent:'space-between',padding:'10px 25px'}}>
-                    <span style={{color:'darkgreen',fontSize:'19px'}}>Question: {currentStep+1}</span>
+                    <span style={{color:'darkgreen',fontSize:'19px'}}>Question#: {currentStep+1}</span>
                     <span style={{color:'darkcyan',fontSize:'19px'}}> Total Questions: {quiz.length}</span>
                 </div>
                 <form onSubmit={(e: React.FormEvent<EventTarget>) => callback(e, selectedAns)}>
