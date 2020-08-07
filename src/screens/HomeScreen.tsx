@@ -36,9 +36,9 @@ export default function HomeScreen() {
         
         if (userAns === currentQuestion.correct_answer) {
             setScore(++score);
-            setYouSelected([...youSelected, userAns + " " + " ✔"])
+            setYouSelected([...youSelected, userAns.concat(" ").concat(" ✔")])
         }else{
-            setYouSelected([...youSelected, userAns + " " + " ✖"])
+            setYouSelected([...youSelected, userAns.concat(" ").concat(" ✖")])
         }
 
         if (currentStep !== quiz.length - 1)
